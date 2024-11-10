@@ -1,34 +1,25 @@
-// screens/HomeScreen.tsx
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type HomeScreenProps = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ setIsLoggedIn }) => {
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsLoggedIn(false);
+    await AsyncStorage.setItem('isLoggedIn', JSON.stringify(false));
+    await AsyncStorage.removeItem('accessToken'); // Optional: clear token on logout
+    await AsyncStorage.removeItem('refreshToken'); // Optional: clear token on logout
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the Home Screen!</Text>
-      <Button title="Log Out" onPress={handleLogout} />
+    <View>
+      <Text>Welcome to the Home Screen!</Text>
+      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
-});
 
 export default HomeScreen;
