@@ -1,7 +1,7 @@
 // src/screens/RegisterScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
-import { registerUser } from '../services/authService';
+import { registerUser } from '../../services/authService';
 
 type RegisterScreenProps = {
   navigation: any;

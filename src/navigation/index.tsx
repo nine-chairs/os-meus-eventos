@@ -3,10 +3,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoginScreen from '../screens/LoginScreen';
-import HomeScreen from '../screens/HomeScreen';
-import RegisterScreen from '../screens/RegisterScreen';
+import { checkLoginStatus } from '../services/authService'; // Import checkLoginStatus
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 
 type RootStackParamList = {
   Login: undefined;
@@ -21,13 +21,11 @@ const Navigation: FC = () => {
   const [isCheckingLogin, setIsCheckingLogin] = useState(true);
 
   useEffect(() => {
-    // Function to check if user was logged in before
-    const checkLoginStatus = async () => {
+    const initializeLoginStatus = async () => {
       try {
-        // Retrieve saved login status from AsyncStorage
-        const savedLoginStatus = await AsyncStorage.getItem('isLoggedIn');
-        console.log("Saved login status:", savedLoginStatus);  // Log to verify saved status
-        setIsLoggedIn(savedLoginStatus === 'true'); // Set initial state based on stored value
+        // Use the imported checkLoginStatus function
+        const loggedIn = await checkLoginStatus();
+        setIsLoggedIn(loggedIn); // Set initial state based on stored value
       } catch (error) {
         console.error("Error loading login status:", error);
       } finally {
@@ -35,7 +33,7 @@ const Navigation: FC = () => {
       }
     };
 
-    checkLoginStatus();
+    initializeLoginStatus();
   }, []);
 
   if (isCheckingLogin) {
@@ -47,12 +45,10 @@ const Navigation: FC = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggedIn ? (
-          // If logged in, show the Home screen
           <Stack.Screen name="Home">
             {(props) => <HomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
           </Stack.Screen>
         ) : (
-          // If not logged in, show Login and Register screens
           <>
             <Stack.Screen name="Login">
               {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}

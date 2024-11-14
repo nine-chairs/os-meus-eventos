@@ -1,7 +1,8 @@
 // src/screens/LoginScreen.tsx
+
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
-import { loginUser } from '../services/authService';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { loginUser } from '../../services/authService';
 
 type LoginScreenProps = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,25 +24,47 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ setIsLoggedIn, navigation }) 
   };
 
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+        style={styles.input}
       />
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        style={styles.input}
       />
       <Button title="Login" onPress={handleLogin} />
       <Button title="Register" onPress={() => navigation.navigate('Register')} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+});
 
 export default LoginScreen;
