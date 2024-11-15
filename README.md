@@ -123,10 +123,7 @@ If you encounter any issues while running the app, make sure you have the latest
 
 This project is licensed under the MIT License.
 
----
-
-Feel free to update this README as necessary to include additional details specific to your app’s requirements.
-
 ```
+
 
 ```
