@@ -1,5 +1,3 @@
-// src/screens/HomeScreen.tsx
-
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { logoutUser } from '../../services/authService';
@@ -11,8 +9,8 @@ type HomeScreenProps = {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ setIsLoggedIn }) => {
   const handleLogout = async () => {
-    await logoutUser();  // Call logout function from authService
-    setIsLoggedIn(false); // Update login state after logging out
+    await logoutUser();
+    setIsLoggedIn(false);
   };
 
   return (

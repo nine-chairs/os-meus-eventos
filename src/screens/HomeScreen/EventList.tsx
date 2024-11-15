@@ -1,5 +1,3 @@
-// src/components/EventList.tsx
-
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
 import { fetchEvents } from '../../services/eventService';
@@ -10,7 +8,6 @@ type Event = {
   description: string;
   startsAt: string;
   capacity: number;
-  // Add other fields as necessary
 };
 
 const EventList: React.FC = () => {

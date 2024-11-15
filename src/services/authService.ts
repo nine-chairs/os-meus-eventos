@@ -1,5 +1,3 @@
-// src/services/authService.ts
-
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_KEY } from '@env';

@@ -1,9 +1,7 @@
-// src/navigation/index.tsx
-
 import React, { FC, useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { checkLoginStatus } from '../services/authService'; // Import checkLoginStatus
+import { checkLoginStatus } from '../services/authService';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
@@ -23,13 +21,12 @@ const Navigation: FC = () => {
   useEffect(() => {
     const initializeLoginStatus = async () => {
       try {
-        // Use the imported checkLoginStatus function
         const loggedIn = await checkLoginStatus();
-        setIsLoggedIn(loggedIn); // Set initial state based on stored value
+        setIsLoggedIn(loggedIn);
       } catch (error) {
         console.error("Error loading login status:", error);
       } finally {
-        setIsCheckingLogin(false); // Indicate checking is done
+        setIsCheckingLogin(false);
       }
     };
 

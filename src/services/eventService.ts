@@ -1,5 +1,3 @@
-// src/services/eventService.ts
-
 import axios from 'axios';
 import { API_KEY } from '@env';
 import { API_BASE_URL } from '@env';
@@ -15,7 +13,7 @@ export const fetchEvents = async () => {
         'ApiKey': apiKey,  
       },
     });
-    return response.data;  // Assuming the API returns an array of events
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
       console.error("Error fetching events:", error.response.data);
