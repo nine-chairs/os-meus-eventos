@@ -129,7 +129,4 @@ Feel free to update this README as necessary to include additional details speci
 
 ```
 
----
-
-You can copy and paste this entire markdown text into a `README.md` file. This document now fully follows markdown formatting, with each section presented clearly and consistently. Let me know if there’s anything more you need!
 ```
