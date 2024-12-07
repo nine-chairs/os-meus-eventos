@@ -5,11 +5,13 @@ import { checkLoginStatus } from '../services/authService';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
+import CreateEventScreen from '../screens/CreateEventScreen/CreateEventScreen';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
   Register: undefined;
+  CreateEvent: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -42,9 +44,12 @@ const Navigation: FC = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggedIn ? (
-          <Stack.Screen name="Home">
-            {(props) => <HomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
-          </Stack.Screen>
+          <>
+            <Stack.Screen name="Home">
+              {(props) => <HomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+            </Stack.Screen>
+            <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
+          </>
         ) : (
           <>
             <Stack.Screen name="Login">
